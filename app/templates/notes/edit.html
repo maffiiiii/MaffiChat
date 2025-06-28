@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+{%block content%}
+<div class="add-form">
+    <h1>Add new note</h1>
+    <form method="POST" action="{{url_for('notes.edit', note_id=note.id)}}">
+        <label for="name">Title</label>
+        <input type="text" name="name" value="{{note.name}}">
+        <label for="inhalt">Inhalt</label>
+        <textarea name="inhalt" rows="5">{{note.inhalt}}</textarea>
+        <button type="submit" >Edit</button>
+        <button href="{{url_for('notes.index')}}">Cancel</button>
+    </form>
+</div>
+{%endblock%}
