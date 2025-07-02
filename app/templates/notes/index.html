@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Notes</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='notes_index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notes_index.css') }}">
 </head>
 
 <body class="dashboard">
@@ -12,14 +12,14 @@
 
      <div class="grid">               <!--cause i dont want this stupid dots -->
         {% for note in notes %}
-        <div>             <!-- not a list -->
-            {% set words = note.name.split() %}
-            <!-- {% set words = note.inhalt.split() %}      split with spaces -->
-            <!-- {{ words[0] ~ ' ' ~ words[1] ~ ' ' ~ words[2] }}{% if words|length > 3 %}...{% endif %}<br>   зєднання рядка крива хвилш -->
+        <div>            
+            {% set words = note.name.strip().split() %} 
 
-            <strong></strong>
-            {{ words[0] ~ (words|length > 1 ? ' ' ~ words[1] : '') ~ (words|length > 2 ? ' ' ~ words[2] : '') }}{% if words|length > 3 %}...{% endif %}
-            </strong><br> 
+                    <strong>
+                        {{ words[0] ~ (' ' ~ words[1] if words|length > 1 else '') ~ (' ' ~ words[2] if words|length > 2 else '') }}
+                        {% if words|length > 3 %}...{% endif %}
+                    </strong>
+
             <a class="note-button" href="{{ url_for('notes.edit', note_id=note.id) }}">Edit</a>
             <form method="POST" action="{{ url_for('notes.delete', note_id=note.id) }}" style="display:inline;">
                 <button class="note-button" type="submit">Delete</button>
