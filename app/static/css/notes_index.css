@@ -1,0 +1,86 @@
+.user-circle {
+  position: fixed; /* right top positionі */
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%; 
+  display: flex;     /* bottom thing */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;   /* girnyi text letter */
+  font-size: 18px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  z-index: 999; 
+}
+
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: sans-serif;
+}
+
+.dashboard {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.grid button {
+  padding: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: #ccc;
+  transition: background 0.3s;
+}
+
+.grid button:hover {
+  background: #aaa;
+}
+
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+.note-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: #c0c0c0;
+  transition: background 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+  border-radius: 5px;
+  margin-top: 10px;     /* vidstup */
+}
+
+.note-button:hover {   /*cursor thing */
+  background: #aaa;
+}
+
+.grid div {
+  background: #e6e6e6;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}

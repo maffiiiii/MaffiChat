@@ -1,5 +1,10 @@
 {%extends "base.html"%}
 
+
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='notes_index.css') }}">
+</head>
+
 {%block content%}
 <div class="add-form">
     <h1>Add new note</h1>
@@ -8,8 +13,14 @@
         <input type="text" name="name">
         <label for="inhalt">Inhalt</label>
         <textarea name="inhalt" rows="5"></textarea>
-        <button type="submit" >Add</button>
-        <button href="{{url_for('notes.index')}}">Cancel</button>
+        <button type="submit" class="note-button">Add</button>
+        <button href="{{url_for('notes.index')}}" class="note-button">Cancel</button>
     </form>
 </div>
+
+{% if current_user.is_authenticated %}
+            <div class="user-circle">
+                {{ current_user.username[0]|upper }}
+            </div>
+            {% endif %}
 {%endblock%}

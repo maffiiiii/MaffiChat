@@ -4,8 +4,9 @@ from app.auth import auth_bp
 from app.models import User
 from app.db import db
 
-@auth_bp.route("/register", methods=["GET", "POST"])
 
+
+@auth_bp.route("/register", methods=["GET", "POST"])
 def register():
     if request.method=="POST":
         username = request.form["username"]
@@ -26,6 +27,9 @@ def register():
         return redirect(url_for("main.base"))
     
     return render_template("auth/register.html")
+
+
+
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():

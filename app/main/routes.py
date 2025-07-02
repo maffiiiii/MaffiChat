@@ -9,6 +9,6 @@ def index():
 def error():
     abort(501)
 
-# @main_bp.route("/base")
-# def base():
-#     return render_template("base.html")
+@main_bp.route("/base")
+def base1():
+    return render_template("home.html")
