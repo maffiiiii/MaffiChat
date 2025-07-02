@@ -10,5 +10,5 @@ def error():
     abort(501)
 
 @main_bp.route("/base")
-def base1():
+def base():
     return render_template("home.html")
