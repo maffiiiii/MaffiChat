@@ -2,18 +2,19 @@
   position: fixed; /* right top positionі */
   top: 20px;
   right: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: #333;
+  width: 60px;
+  height: 60px;
+  background-color: #000000;
   color: #fff;
   border-radius: 50%; 
   display: flex;     /* bottom thing */
   align-items: center;
   justify-content: center;
   font-weight: bold;   /* girnyi text letter */
-  font-size: 18px;
+  font-size: 22px;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   z-index: 999; 
+  margin-top: 5px;
 }
 
 
@@ -42,12 +43,12 @@ body {
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background: #ccc;
+  background: #ffffff;            /* for delete */
   transition: background 0.3s;
 }
 
 .grid button:hover {
-  background: #aaa;
+  background: #aaa;     /*  when cursor */
 }
 
 
@@ -65,22 +66,94 @@ a:hover {
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background: #c0c0c0;
+  background: #ffffff;
   transition: background 0.3s;
   text-decoration: none;
   display: inline-block;
   color: black;
   border-radius: 5px;
-  margin-top: 10px;     /* vidstup */
+  margin-top: 20px;     /* vidstup THAT DOES NOT WORK*/
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.note-button1 {            /*  for edit button */
+  padding: 20px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: #ffffff;
+  transition: background 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+  border-radius: 5px;
+  margin-top: 20px;     /* vidstup THAT DOES NOT WORK*/
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+.note-button2 {            /*  for add button */
+  padding: 20px 30px;
+  font-size: 16px;
+  width: 1550px;
+  cursor: pointer;
+  border: none;
+  background: #000000;
+  transition: background 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  margin-top: 2px;     /* vidstup THAT DOES NOT WORK*/
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .note-button:hover {   /*cursor thing */
   background: #aaa;
 }
 
+.note-button1:hover {   /*cursor thing */
+  background: #aaa;
+}
+
+.note-button2:hover {   /*cursor thing */
+  background: #363636;
+}
+
 .grid div {
-  background: #e6e6e6;
+  background: #000000;
   padding: 15px;
   border-radius: 10px;
+  color: white;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
+
+
+
+
+.black-line {
+  height: 2px;
+  background: black;
+  width: 1595px;
+  margin: 20px 0; 
+  margin-top: 40px;
+}
+
+
+.vertical-line {
+  position: fixed;
+  top: 0;
+  right: 0; 
+  width: 2px;             
+  height: 100vh;          
+  background-color: black;
+  z-index: 1000;
+  right: 47px;
+  height: 870px;
+  margin-top: 100px;
+}
+
+
