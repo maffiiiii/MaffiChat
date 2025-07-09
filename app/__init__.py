@@ -2,11 +2,17 @@ from flask import Flask
 from flask_login import LoginManager
 from app.db import db
 from flask_migrate import Migrate
+from flask_socketio import SocketIO
 from app.models import User
 # from app.main.errors import register_error_handlers
 from app.main.blueprint import main_bp
 from app.notes.routes import notes_bp
 from app.auth.routes import auth_bp
+from app.chat.routes import chat_bp
+from app.things import socketio
+
+
+# socketio = SocketIO()
 
 def create_app():
     app = Flask(__name__)
@@ -16,6 +22,7 @@ def create_app():
     db.init_app(app)
     migrate = Migrate(app, db)
     login_manager = LoginManager()
+    socketio.init_app(app)
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
     @login_manager.user_loader
@@ -24,4 +31,5 @@ def create_app():
     app.register_blueprint(main_bp)
     app.register_blueprint(notes_bp, url_prefix="/notes")
     app.register_blueprint(auth_bp, url_prefix="/auth")
+    app.register_blueprint(chat_bp, url_prefix="/chat")
     return app

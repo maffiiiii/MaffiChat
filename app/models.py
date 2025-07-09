@@ -2,6 +2,8 @@ from app.db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+import random
+import string
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,3 +27,19 @@ class Note(db.Model):
     inhalt = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    chat_id = db.Column(db.Integer, db.ForeignKey('chat.id'))
+    text = db.Column(db.String)
+    time = db.Column(db.DateTime, default=datetime.now)
+    message_type = db.Column(db.String, default="text")
+    media_url = db.Column(db.String)
+    mime_type = db.Column(db.String)
+
+class Chat(db.Model):
+    id = db.Column(db.Integer, primary_key=True, default=random.choices(string.digits, k=15))
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    receiver_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    messages = db.relationship('Message', backref='chat_messages')

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>MaffiChat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+</head>
+
+
+<body>
+    <div>
+        <form method="POST" action="{{ url_for ('chat.search')}}">
+            <!-- <label for="username">Enter a username</label> -->
+            <input type="text" name="username" id="username" placeholder="Enter an username">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+
