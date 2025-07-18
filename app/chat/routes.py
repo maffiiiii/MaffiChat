@@ -5,6 +5,7 @@ from app.main.blueprint import chat_bp
 from flask_socketio import send, join_room, leave_room
 from app.models import User, Message, Chat
 from app.db import db
+from app.things import socketio
 
 
 @chat_bp.route("/")
@@ -12,7 +13,10 @@ from app.db import db
 def index():
     messages = Message.query.all()
     users = User.query.all()
-    return render_template("chat/chat.html", messages=messages, users=users)
+    chats = Chat.query.filter(
+        (Chat.sender_id == current_user.id) or (Chat.receiver_id == current_user.id)
+    ).all() 
+    return render_template("chat/chat.html", messages=messages, users=users, chats=chats)
 
 
 @chat_bp.route("/chat/<int:chat_id>", methods=["GET"])
@@ -32,12 +36,12 @@ def search():
         user_name = request.form["username"]     #username in html form must be username
         user = User.query.filter_by(username=user_name).first()
         if not user:
-            flash("this username does not exist")
+            flash("This username does not exist")
             return redirect(url_for("chat.index"))
 
 
         
-        chat = Chat.query.filter(Chat.sender_id==current_user.id, Chat.receiver_id==user.id).first()
+        chat = Chat.query.filter(((Chat.receiver_id == user.id) and (Chat.sender_id == current_user.id) or (Chat.receiver_id == current_user.id) and (Chat.sender_id == user.id))).first()
         if chat:
             return redirect(url_for("chat.chat", chat_id=chat.id))
         else:
@@ -49,9 +53,35 @@ def search():
         
         return redirect(url_for("chat.chat", chat_id=chat.id))
 
+
+
         
     
     
-# @chat_bp.route("/start_chat/<int:user_id", methods=["GET", "POST"])
-# @login_required
+@socketio.on("message")
+def handle_message(data):
+    text = data["text"]
+    user_id = data["user_id"]
+    chat_id = data["chat_id"]
+    message = Message(text=text, user_id=user_id, chat_id=chat_id)
+    db.session.add(message)
+    db.session.commit()
+    send({
+        "chat_id": chat_id,
+        "text": text,
+        "user_id": user_id,
+        "time": message.time.strftime("%Y-%m-%d %H:%M:%S"),
+    }, room=str(chat_id))
+
+
+@socketio.on("join")
+def handle_join(data):
+    chat_id = data["chat_id"]
+    join_room(chat_id)
+
+
+@socketio.on("leave")
+def handle_leave(data):
+    chat_id = data["chat_id"]
+    leave_room(chat_id)
 

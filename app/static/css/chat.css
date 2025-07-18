@@ -1,0 +1,245 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #191919;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+input{
+    width: 300px;
+    height: 200px;
+}
+
+.sidebar {
+    width: 320px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #191919;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.chat-form {
+    background-color: #121212;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 200, 0, 0.9);
+    width: auto;
+    margin: 20px auto;
+}
+
+.chat-form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #222;
+    color: #eee;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.chat-form input[type="text"]:focus {
+    outline: none;
+    border-color: #006500;
+}
+
+.chat-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #d2d2d2;
+    color: rgb(0, 0, 0);
+    transition: background-color 0.3s;
+}
+
+.chat-form button:hover {
+    background-color: #004e00;
+    color: white;
+}
+
+
+.search-row {
+    display: flex;
+    gap: 10px;
+}
+
+
+.search-row input[type="text"] {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+
+.search-row button {
+    width: auto;
+    white-space: nowrap;
+}
+
+
+
+
+
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-list-item {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    cursor: pointer;
+}
+
+.chat-list-item:hover {
+    background-color: #004e00;
+}
+
+
+.chat-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+}
+
+.chat-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message-area {
+    flex: 1;
+    background-color: #191919;
+    padding: 10px;
+    overflow-y: auto;
+    border-radius: 6px;
+}
+
+.message-area p {
+    background-color: #004e00;
+    color: rgb(255, 255, 255);
+    padding: 6px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    max-width: 60%;
+}
+
+/* send buton placed */
+.send-button-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.send-button-container button {
+    padding: 12px;
+    background-color: #d2d2d2;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+.send-button-container button:hover {
+    background-color: #004e00;
+    color: rgb(255, 255, 255)
+}
+
+.flash-messages {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #004e00;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+.flash-messages.show {
+    opacity: 0.8;
+}
+
+
+
+
+
+
+/* h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+.message-area {
+    flex: 1;
+    background-color: #7e1b1b;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* each message */
+/* .message-area p {
+    background-color: white;
+    color: black;
+    padding: 6px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    max-width: 60%;
+} */
+
+/* Send button at bottom right that doesnt work hahaha stuoid shit*/
+/* .send-button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    background-color: #2e2e2e;
+}
+
+.send-button-container button {
+    padding: 10px 20px;
+    background-color: #004e00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.send-button-container button:hover {
+    background-color: #006f00;
+}
+
+.flash-messages {
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+} */ 

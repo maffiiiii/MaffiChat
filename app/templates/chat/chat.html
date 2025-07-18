@@ -6,17 +6,91 @@
     <meta charset="UTF-8">
     <title>MaffiChat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
 </head>
 
 
 <body>
-    <div>
-        <form method="POST" action="{{ url_for ('chat.search')}}">
-            <!-- <label for="username">Enter a username</label> -->
-            <input type="text" name="username" id="username" placeholder="Enter an username">
-            <button type="submit">Search</button>
-        </form>
+
+    <div class="sidebar">
+
+        <div class="chat-form">
+            <form method="POST" action="{{ url_for ('chat.search')}}">
+                <!-- <label for="username">Enter a username</label> -->
+                 <div class="search-row">
+                    <input type="text" name="username" id="username" placeholder="Enter an username">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="chat-list">
+            {% for chat in chats %}
+                <div class="chat-list-item">
+                    {{ chat.receiver.username if chat.sender_id == current_user.id else chat.sender.username }}
+                </div>
+            {% endfor %}
+        </div>
+
     </div>
+
+
+
+
+    <div class="chat-main">
+
+        <div class="chat-header">
+            {%if chat%}
+                <h1>{{chat.receiver.username if chat.sender_id==current_user.id else chat.sender.username}}</h1>
+            {%else%}
+                <h1>Choose a chat</h1>
+            {%endif%}
+        </div>
+
+        <div class="message-area" id="messages">
+            {%for message in messages %}
+                {{message.text}}
+            {%endfor%}
+        </div>
+
+        <div class="send-button-container">
+            <input id="message" placeholder="Enter a message"> 
+            <button onclick="send_message()">Send</button>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endwith %}
+
+        <script>
+            var chat_id = "{{chat.id if chat else ''}}"
+            var current_user_id = "{{current_user.id }}"
+            window.addEventListener('DOMContentLoaded', () => {
+        const flash = document.querySelector('.flash-messages');
+            if (flash) {
+        
+            flash.classList.add('show');
+
+            
+                setTimeout(() => {
+                    flash.classList.remove('show');
+                    setTimeout(() => flash.remove(), 500); 
+                }, 3000);
+                }
+            });
+        </script>
+        <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+    </div>
+    
 </body>
 
 </html>
