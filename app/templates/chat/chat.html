@@ -24,14 +24,13 @@
             </form>
         </div>
 
-        <div class="chat-list">
+        <div class="chat-list" id="chat-list">
             {% for chat in chats %}
-                <a href="/chat/chat{{ chat.id }}" class="chat-button">
+                <a href="/chat/chat/{{ chat.id }}" class="chat-button" id="chat-{{ chat.id }}">
                     {{ chat.receiver.username if chat.sender_id == current_user.id else chat.sender.username }}
                 </a>
             {% endfor %}
         </div>
-
     </div>
 
 

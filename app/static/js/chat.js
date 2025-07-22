@@ -2,6 +2,8 @@ var socket = io();
 // var chat_id = "{{chat.id if chat else ''}}"
 // var current_user_id = "{{current_user.id }}"
 var date = new Date().toISOString()
+
+socket.emit("join_chat_list", {user_id: current_user_id});
 if (chat_id){
     socket.emit("join", {chat_id: chat_id});
 }
@@ -30,3 +32,21 @@ document.getElementById("message").addEventListener("keypress", function(n){
 });
 
 
+
+
+// ФУНКЦІЯ ОНОВЛЮЄ СПИСОК В ТВОМУ ХТМЛ, Я ТАМ ДОДАВ АЙДІ chat-list І ПРОСТО ЯКЩО ЧАТ СТВОРИВСЯ ТО ДОДАЄМО ЙОГО ЯК НОВИЙ ЕЛЕМЕНТ
+// ІЗ ПОСИЛАННЯМ НА ЧАТ ПО id, ЩОСЬ ТИПУ ТОГО САМОГО ЯК В ТЕБЕ ДОДАЮТЬ НА СТОРІНКУ ПОВІДОМЛЕННЯ
+socket.on('update_chat_list', function(data) {
+            var chatList = document.getElementById('chat-list');
+            
+            var existingChat = document.getElementById('chat-' + data.chat_id);
+            if (!existingChat) {
+                var newChat = document.createElement('a');
+                newChat.href = "/chat/chat/" + data.chat_id;
+                newChat.className = "chat-button";
+                newChat.id = "chat-" + data.chat_id;
+                newChat.textContent = data.username;
+                
+                chatList.insertBefore(newChat, chatList.firstChild);
+            }
+        });
