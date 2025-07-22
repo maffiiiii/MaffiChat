@@ -10,7 +10,7 @@
 </head>
 
 
-<body>
+<body >
 
     <div class="sidebar">
 
@@ -26,9 +26,9 @@
 
         <div class="chat-list">
             {% for chat in chats %}
-                <div class="chat-list-item">
+                <a href="/chat/chat/{{ chat.id }}" class="chat-button">
                     {{ chat.receiver.username if chat.sender_id == current_user.id else chat.sender.username }}
-                </div>
+                </a>
             {% endfor %}
         </div>
 
@@ -47,15 +47,19 @@
             {%endif%}
         </div>
 
+
+        
         <div class="message-area" id="messages">
             {%for message in messages %}
-                {{message.text}}
+                <p class="{% if message.user_id == current_user.id %}me{% else %}other{% endif %}">{{message.text}}</p>
             {%endfor%}
         </div>
 
-        <div class="send-button-container">
-            <input id="message" placeholder="Enter a message"> 
-            <button onclick="send_message()">Send</button>
+        <div class="input-size">
+            <div class="send-button-container">
+                <input id="message" placeholder="Enter a message"> 
+                <button onclick="send_message()">Send</button>
+            </div>
         </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}

@@ -8,7 +8,7 @@ if (chat_id){
 
 socket.on('message', function(msg){
     var div = document.createElement("div");
-    div.className = msg.user_id == current_user_id ? 'message-sent' : 'message-received';
+    div.className = msg.user_id == current_user_id ? 'me' : 'other';
     div.appendChild(document.createTextNode(msg.text));
     document.getElementById("messages").appendChild(div);
 });
