@@ -51,7 +51,7 @@ def search():
             
 
         
-        return redirect(url_for("chat.chat", chat_id=chat.id))
+            return redirect(url_for("chat.chat", chat_id=chat.id))
 
 
 

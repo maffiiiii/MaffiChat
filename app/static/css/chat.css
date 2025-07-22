@@ -177,13 +177,13 @@ body {
 
 
 
-.message-area p.me {
+.me {
     align-self: flex-end;
     background-color: #004e00;
 }
 
 
-.message-area p.other {
+.other {
     align-self: flex-start;
     background-color: #004e00;
 }

@@ -23,3 +23,10 @@ function send_message() {
     });
     document.getElementById("message").value = "";
 }
+
+
+document.getElementById("message").addEventListener("keypress", function(n){
+    if (n.key==="Enter"){send_message()};
+});
+
+
